@@ -21,6 +21,11 @@ body {
    transform: scale(1);
 }
 
+#description {
+   text-align: center;
+   width: 50%;
+}
+
 #score {
    display: none;
    position: absolute;
