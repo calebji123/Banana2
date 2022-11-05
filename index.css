@@ -50,17 +50,32 @@ body {
    display: none;
 }
 
+.xsmall {
+   grid-template-columns: repeat(3, 1fr);
+   grid-template-rows: repeat(3, 1fr);
+}
+
 .small {
    grid-template-columns: repeat(4, 1fr);
    grid-template-rows: repeat(4, 1fr);
 }
 
 .medium {
+   grid-template-columns: repeat(5, 1fr);
+   grid-template-rows: repeat(5, 1fr);
+}
+
+.large {
    grid-template-columns: repeat(6, 1fr);
    grid-template-rows: repeat(6, 1fr);
 }
 
-.large {
+.xlarge {
+   grid-template-columns: repeat(8, 1fr);
+   grid-template-rows: repeat(8, 1fr);
+}
+
+.xxlarge {
    grid-template-columns: repeat(10, 1fr);
    grid-template-rows: repeat(10, 1fr);
 }

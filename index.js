@@ -5,14 +5,17 @@ let score_display = document.getElementById("score")
 let suspects_img_links = ["./images/Banana-Single.jpeg"]
 let options = ["scale", "translate", "rotate"]
 let presets = [[1.5, 0.4], [25,20], [70, 60]]
+let opp_presets = [[0.5, 0.2], [-25, 20], [-70, 60]]
 let inverses = [1, 0, 0]
 let score = 100
 let diff = ""
 
-
+let seasy_button = document.getElementById("seasy")
 let easy_button = document.getElementById("easy")
 let med_button = document.getElementById("med")
 let hard_button = document.getElementById("hard")
+let shard_button = document.getElementById("super_hard")
+let chall_button = document.getElementById("challenging")
 let imp_button = document.getElementById("imp")
 let option = document.getElementById("option")
 let desc = document.getElementById("description")
@@ -20,9 +23,12 @@ let back_button = document.getElementById("back")
 let retry_button = document.getElementById("retry")
 let win_cont = document.getElementById("win")
 
+seasy_button.onclick = ()=>{start("seasy")}
 easy_button.onclick = ()=>{start("easy")}
 med_button.onclick = () => {start("med")}
 hard_button.onclick = () => {start("hard")}
+shard_button.onclick = () => {start("shard")}
+chall_button.onclick = () => {start("chall")}
 imp_button.onclick = () => {start("imp")}
 back_button.onclick = () => {home()}
 retry_button.onclick = () => {home();start(diff)}
@@ -79,13 +85,22 @@ var timeout = {
 
 function random_change(){
    let which = Math.floor(Math.random()*options.length)
+   let coin = Math.floor(Math.random()*2)
+   let preset_used = presets[which]
+   switch (coin) {
+      case 0:
+         preset_used = opp_presets[which]
+         break;
+      default:
+         break;
+   }
    switch (which) {
       case 0:
-         return [options[which], [["scale("],[")"]],presets[which], inverses[which]]
+         return [options[which], [["scale("],[")"]],preset_used, inverses[which]]
       case 1:
-         return [options[which], [["translate("],["px,0)"]],presets[which], inverses[which]]
+         return [options[which], [["translate("],["px,0)"]],preset_used, inverses[which]]
       case 2:
-         return [options[which], [["rotate("],["deg)"]],presets[which], inverses[which]]
+         return [options[which], [["rotate("],["deg)"]],preset_used, inverses[which]]
       default:
          break;
    }
@@ -170,6 +185,11 @@ function start(difficulty) {
    score = 100
    score_display.innerHTML = "Score: " + score.toString()
    switch (difficulty) {
+      case "seasy":
+         diff = "seasy"
+         grid.classList = "xsmall"
+         fill_grid(3)
+         break;
       case "easy":
          diff = "easy"
          grid.classList = "small"
@@ -178,11 +198,21 @@ function start(difficulty) {
       case "med":
          diff = "med"
          grid.classList = "medium"
-         fill_grid(6)
+         fill_grid(5)
          break;
       case "hard":
          diff = "hard"
          grid.classList = "large"
+         fill_grid(6)
+         break;
+      case "shard":
+         diff = "shard"
+         grid.classList = "xlarge"
+         fill_grid(8)
+         break;
+      case "chall":
+         diff = "chall"
+         grid.classList = "xxlarge"
          fill_grid(10)
          break;
       case "imp":
