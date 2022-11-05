@@ -1,0 +1,66 @@
+body {
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   transition: 0.5 ease;
+}
+
+#grid {
+   display: grid;
+   justify-content: center;
+   align-items: center;
+   width: 50vw;
+   height: 50vw;
+}
+
+#grid > img {
+   width: 70%;
+   transition: 0.5s ease;
+   transform: scale(1);
+}
+
+#score {
+   display: none;
+   position: absolute;
+   top: 10px;
+   right: 10px;
+}
+
+#option {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+
+#back{
+   display: none;
+   position: absolute;
+   top: 10px;
+   left: 10px;
+}
+
+#win {
+   display: none;
+}
+
+.small {
+   grid-template-columns: repeat(4, 1fr);
+   grid-template-rows: repeat(4, 1fr);
+}
+
+.medium {
+   grid-template-columns: repeat(6, 1fr);
+   grid-template-rows: repeat(6, 1fr);
+}
+
+.large {
+   grid-template-columns: repeat(10, 1fr);
+   grid-template-rows: repeat(10, 1fr);
+}
+
+.imp {
+   grid-template-columns: repeat(20, 1fr);
+   grid-template-rows: repeat(20, 1fr);
+}
