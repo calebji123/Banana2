@@ -108,15 +108,15 @@ function fill_grid(size){
       if (impostor){
          switch (Math.floor(Math.random()*2)) {
             case 0:
-               interval.make(()=>{do_effect(choice[1], choice[2][0]-choice[2][1], choice[3], this_id)},random_interval(500, 3000))
+               timeout.make(()=>{do_effect(choice[1], choice[2][0]-choice[2][1], choice[3], this_id)},random_interval(500, 3000))
                break;
             case 1:
-               interval.make(()=>{do_effect(choice[1], choice[2][0]+choice[2][1], choice[3], this_id)},random_interval(500, 3000))
+               timeout.make(()=>{do_effect(choice[1], choice[2][0]+choice[2][1], choice[3], this_id)},random_interval(500, 3000))
             default:
                break;
          }
       } else {
-         interval.make(()=>{do_effect(choice[1], choice[2][0], choice[3], this_id)},random_interval(500, 3000))
+         timeout.make(()=>{do_effect(choice[1], choice[2][0], choice[3], this_id)},random_interval(500, 3000))
       }
       new_img.addEventListener('click', e=>{is_impostor(impostor)})
       grid.appendChild(new_img)
@@ -133,6 +133,7 @@ function random_interval(start,end) {
 function do_effect(todo, amt, inv, id) {
    elem = document.getElementById(id)
    elem.style.transform = todo[0]+amt.toString()+todo[1]
+   timeout.make(()=>{do_effect(todo, amt, inv, id)},random_interval(500, 3000))
    timeout.make(()=>{clear(todo, inv, id)}, 200)
 }
 
