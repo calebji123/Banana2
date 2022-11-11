@@ -109,18 +109,13 @@ function random_change(){
 
 function fill_grid(size){
    let choice = random_change()
-   let impostor_found = false
+   let imp_index = Math.floor(Math.random() * size *size)
    for (let index = 0; index < size*size; index++) {
       const new_img = document.createElement("img")
       const this_id = "img" + index.toString()
       new_img.id = this_id
       new_img.src = suspects_img_links[0]
-      let impostor = false
-      if ((Math.random() * size < 1 || index == size - 1 ) && !impostor_found) {
-         impostor = true
-         impostor_found = true
-      }
-      if (impostor){
+      if (index == imp_index){
          switch (Math.floor(Math.random()*2)) {
             case 0:
                timeout.make(()=>{do_effect(choice[1], choice[2][0]-choice[2][1], choice[3], this_id)},random_interval(500, 3000))
@@ -133,7 +128,7 @@ function fill_grid(size){
       } else {
          timeout.make(()=>{do_effect(choice[1], choice[2][0], choice[3], this_id)},random_interval(500, 3000))
       }
-      new_img.addEventListener('click', e=>{is_impostor(impostor)})
+      new_img.addEventListener('click', e=>{is_impostor(index == imp_index)})
       grid.appendChild(new_img)
    }
    timed_score = interval.make(()=>{change_score(1)},5000)
